@@ -13,6 +13,7 @@ class VViewModel(application: Application): AndroidViewModel(application) {
     private val repository: Repository
     val allData: LiveData<List<Data>>
     val selectedData: MutableLiveData<Data> = MutableLiveData()
+    val selectedIdData: MutableLiveData<Int> = MutableLiveData()
 
     init {
         val dataDao = DataBase.getDatabase(application).getDataDao()
@@ -24,10 +25,10 @@ class VViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun getDataDetail(id: Int): LiveData<DataDetail> {
+        repository.getDataDetailsFromApi(id)
       return   repository.getDataDetails(id)
 
     }
-
 
     fun getFetchDataWithCoroutines(): LiveData<List<Data>> {
         return repository.liveData
@@ -36,5 +37,10 @@ class VViewModel(application: Application): AndroidViewModel(application) {
     fun selected(data: Data?) {
 
         selectedData.value = data
+    }
+
+    fun selectedId(idData: Int) {
+
+        selectedIdData.value = idData
     }
 }

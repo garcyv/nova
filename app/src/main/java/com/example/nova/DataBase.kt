@@ -13,6 +13,7 @@ abstract class DataBase: RoomDatabase()  {
     companion object {
         @Volatile
         private var INSTANCE: DataBase? = null
+        private const val  DATA_BASE_NAME = "data_db"
 
         fun getDatabase(context: Context): DataBase {
             val tempInstance = INSTANCE
@@ -28,7 +29,5 @@ abstract class DataBase: RoomDatabase()  {
                 return instance
             }
         }
-
-        private const val  DATA_BASE_NAME = "data_db"
     }
 }

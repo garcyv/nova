@@ -9,7 +9,7 @@ import retrofit2.http.Path
 interface Interface {
 
     //recomendada
-    @GET("products")
+    @GET("products/")
     suspend fun fetchDataCoroutines(): Response<List<Data>>
 
     @GET("products/{id}")
